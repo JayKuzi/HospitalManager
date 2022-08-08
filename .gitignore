@@ -1,0 +1,9 @@
+# Files and folders to be ignored by Git.
+/target/
+/nbproject/
+nbactions.xml
+.DS_Store
+.idea/
+target/
+HospitalManager.iml
+hospital_manager.iml
