@@ -5,7 +5,14 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import za.ac.cput.hospital_manager.domain.Shift;
+import za.ac.cput.hospital_manager.factory.ShiftFactory;
+
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,8 +41,10 @@ public class ShiftControllerTest {
     @BeforeEach
     void setUp()
     {
-        shift = ShiftFactory.build(1, "Computer Science", "Information");
-        baseUrl = "http://localhost:" + portNumber + "/" + "college-management-system/shift/";
+        LocalTime shiftStartTime = LocalTime.parse("08:00:00", DateTimeFormatter.ISO_LOCAL_TIME);
+        LocalTime shiftEndTime = LocalTime.parse("16:00:00", DateTimeFormatter.ISO_LOCAL_TIME);
+        shift = ShiftFactory.build(1, shiftStartTime, shiftEndTime);
+        baseUrl = "http://localhost:" + portNumber + "/" + "hospital-manager/shift/";
     }
 
     @Order(1)

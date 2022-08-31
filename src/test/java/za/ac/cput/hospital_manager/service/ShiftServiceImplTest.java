@@ -3,10 +3,14 @@ package za.ac.cput.hospital_manager.service;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import za.ac.cput.hospital_manager.domain.Shift;
+import za.ac.cput.hospital_manager.factory.ShiftFactory;
+import za.ac.cput.hospital_manager.service.shiftService.IShiftService;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,8 +31,8 @@ public class ShiftServiceImplTest {
     void setUp()
     {
         LocalTime shiftStartTime = LocalTime.parse("08:00:00", DateTimeFormatter.ISO_LOCAL_TIME);
-        LocalTime shiftEndTime = LocalTime.parse("16:00:00", DateTimeFormatter.ISO_LOCAL_TIME));
-        shift = ShiftFactory.build("1", "Day Shift", shiftStartTime, shiftEndTime);
+        LocalTime shiftEndTime = LocalTime.parse("16:00:00", DateTimeFormatter.ISO_LOCAL_TIME);
+        shift = ShiftFactory.build(1, shiftStartTime, shiftEndTime);
     }
 
     @Order(1)
@@ -47,7 +51,7 @@ public class ShiftServiceImplTest {
     @Test
     void read()
     {
-        long shiftId = 1;
+        int shiftId = 1;
         Optional<Shift> result = null;
 
         result = service.read(shiftId);
@@ -71,7 +75,7 @@ public class ShiftServiceImplTest {
     @Test
     void deleteById()
     {
-        long shiftId = 1;
+        int shiftId = 1;
         Optional<Shift> result = null;
 
         service.deleteById(shiftId);
