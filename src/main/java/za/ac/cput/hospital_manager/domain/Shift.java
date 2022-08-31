@@ -1,12 +1,25 @@
 package za.ac.cput.hospital_manager.domain;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Objects;
 
+@Entity
 public class Shift {
+
+    @Id
     private int shiftId;
+
     private LocalTime shiftStartTime;
+
     private LocalTime shiftEndTime;
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<Employee> employees;
 
     protected Shift()
     {}

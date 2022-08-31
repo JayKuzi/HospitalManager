@@ -20,6 +20,9 @@ public class Employee implements Serializable {
     @ManyToOne
     private Role role;
 
+    @ManyToOne
+    private Shift shift;
+
     protected Employee (){
 
     }
@@ -57,6 +60,11 @@ public class Employee implements Serializable {
         return password;
     }
 
+    public Shift getShift()
+    {
+        return shift;
+    }
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -70,16 +78,18 @@ public class Employee implements Serializable {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o)
+    {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Employee)) return false;
         Employee employee = (Employee) o;
-        return employeeId.equals(employee.employeeId) && role.equals(employee.role) && name.equals(employee.name) && surname.equals(employee.surname) && username.equals(employee.username) && password.equals(employee.password);
+        return getEmployeeId().equals(employee.getEmployeeId()) && getName().equals(employee.getName()) && getSurname().equals(employee.getSurname()) && getUsername().equals(employee.getUsername()) && getPassword().equals(employee.getPassword()) && getRole().equals(employee.getRole()) && Objects.equals(getShift(), employee.getShift());
     }
 
     @Override
-    public int hashCode() {
-        return Objects.hash(employeeId, role, name, surname, username, password);
+    public int hashCode()
+    {
+        return Objects.hash(getEmployeeId(), getName(), getSurname(), getUsername(), getPassword(), getRole(), getShift());
     }
 
     public static class Builder {
