@@ -6,6 +6,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,8 +26,9 @@ public class ShiftServiceImplTest {
     @BeforeEach
     void setUp()
     {
-        LocalTime startTime = LocalTime.
-        shift = ShiftFactory.build("1", "Day Shift", LocalTime.now(), LocalDate.now());
+        LocalTime shiftStartTime = LocalTime.parse("08:00:00", DateTimeFormatter.ISO_LOCAL_TIME);
+        LocalTime shiftEndTime = LocalTime.parse("16:00:00", DateTimeFormatter.ISO_LOCAL_TIME));
+        shift = ShiftFactory.build("1", "Day Shift", shiftStartTime, shiftEndTime);
     }
 
     @Order(1)
