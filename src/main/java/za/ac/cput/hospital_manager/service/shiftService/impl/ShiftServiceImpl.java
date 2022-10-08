@@ -23,6 +23,8 @@ public class ShiftServiceImpl implements IShiftService {
     @Override
     public Shift save(Shift shift)
     {
+        Optional<Shift> shifts = read(shift.getShiftId());
+        if(shifts.isPresent()) deleteById(shift.getShiftId());
         return shiftRepository.save(shift);
     }
 

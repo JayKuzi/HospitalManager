@@ -4,10 +4,10 @@ Author: Jody Kearns (209023651)
 Date: 26 March 2022 */
 package za.ac.cput.hospital_manager.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 @Entity
@@ -20,16 +20,20 @@ public class Employee implements Serializable {
     @ManyToOne
     private Role role;
 
-    @ManyToOne
-    private Shift shift;
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(name = "Employee_Shift",
+            joinColumns = { @JoinColumn(name = "employee_id") },
+            inverseJoinColumns = { @JoinColumn(name = "shift_id") })
+    private Set<Shift> shifts;
 
     protected Employee (){
-
+        shifts = new HashSet<>();
     }
 
     private Employee (Builder builder){
         this.employeeId = builder.employeeId;
         this.role = builder.role;
+        this.shifts = builder.shifts;
         this.name = builder.name;
         this.surname = builder.surname;
         this.username = builder.username;
@@ -60,20 +64,22 @@ public class Employee implements Serializable {
         return password;
     }
 
-    public Shift getShift()
+    public Set<Shift> getShift()
     {
-        return shift;
+        return shifts;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Employee{" +
                 "employeeId='" + employeeId + '\'' +
-                ", roleId=" + role +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", role=" + role +
+                ", shift=" + shifts +
                 '}';
     }
 
@@ -83,18 +89,19 @@ public class Employee implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Employee)) return false;
         Employee employee = (Employee) o;
-        return getEmployeeId().equals(employee.getEmployeeId()) && getName().equals(employee.getName()) && getSurname().equals(employee.getSurname()) && getUsername().equals(employee.getUsername()) && getPassword().equals(employee.getPassword()) && getRole().equals(employee.getRole()) && Objects.equals(getShift(), employee.getShift());
+        return Objects.equals(getEmployeeId(), employee.getEmployeeId()) && Objects.equals(getName(), employee.getName()) && Objects.equals(getSurname(), employee.getSurname()) && Objects.equals(getUsername(), employee.getUsername()) && Objects.equals(getPassword(), employee.getPassword()) && Objects.equals(getRole(), employee.getRole()) && Objects.equals(shifts, employee.shifts);
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(getEmployeeId(), getName(), getSurname(), getUsername(), getPassword(), getRole(), getShift());
+        return Objects.hash(getEmployeeId(), getName(), getSurname(), getUsername(), getPassword(), getRole(), shifts);
     }
 
     public static class Builder {
         private String employeeId, name, surname, username, password;
         private Role role;
+        private Set<Shift> shifts;
 
         public Builder employeeId(String employeeId){
             this.employeeId = employeeId;
@@ -103,6 +110,12 @@ public class Employee implements Serializable {
 
         public Builder role(Role role){
             this.role = role;
+            return this;
+        }
+
+        public Builder shift(Set<Shift> shifts)
+        {
+            this.shifts = shifts;
             return this;
         }
 

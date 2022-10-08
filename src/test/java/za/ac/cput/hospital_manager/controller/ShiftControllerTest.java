@@ -8,11 +8,19 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import za.ac.cput.hospital_manager.domain.Employee;
+import za.ac.cput.hospital_manager.domain.Role;
 import za.ac.cput.hospital_manager.domain.Shift;
+import za.ac.cput.hospital_manager.factory.EmployeeFactory;
+import za.ac.cput.hospital_manager.factory.RoleFactory;
 import za.ac.cput.hospital_manager.factory.ShiftFactory;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -41,9 +49,14 @@ public class ShiftControllerTest {
     @BeforeEach
     void setUp()
     {
+        Role employeeRole = RoleFactory.build("1", "Electric Technician", "Maintains electrical systems in the hospital");
+        Employee jeff = EmployeeFactory.build("1", employeeRole, "Jeff", "Tones", "jeffT@example.com", "jeffT");
+        Set<Employee> shiftEmployees = new HashSet<Employee>();
+        shiftEmployees.add(jeff);
+
         LocalTime shiftStartTime = LocalTime.parse("08:00:00", DateTimeFormatter.ISO_LOCAL_TIME);
         LocalTime shiftEndTime = LocalTime.parse("16:00:00", DateTimeFormatter.ISO_LOCAL_TIME);
-        shift = ShiftFactory.build(1, shiftStartTime, shiftEndTime);
+        shift = ShiftFactory.build(1, shiftStartTime, shiftEndTime, "Day Shift", shiftEmployees);
         baseUrl = "http://localhost:" + portNumber + "/" + "hospital-manager/shift/";
     }
 

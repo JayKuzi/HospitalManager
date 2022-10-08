@@ -16,6 +16,7 @@ import java.util.List;
  * ShiftController.java
  * @author Mbuso Kotobe (218040385)
  */
+@CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping("hospital-manager/shift/")
 @Slf4j
@@ -29,6 +30,7 @@ public class ShiftController {
         shiftService = service;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("save")
     public ResponseEntity<Shift> save(@RequestBody Shift shift)
     {
@@ -37,7 +39,9 @@ public class ShiftController {
             shiftRecord = shiftService.save(ShiftFactory.build(
                     shift.getShiftId(),
                     shift.getShiftStartTime(),
-                    shift.getShiftEndTime()
+                    shift.getShiftEndTime(),
+                    shift.getShiftType(),
+                    shift.getShiftEmployees()
             ));
         }
         catch(IllegalArgumentException exception)
@@ -49,6 +53,7 @@ public class ShiftController {
         return ResponseEntity.ok(shiftRecord);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("read/{shiftId}")
     public ResponseEntity<Shift> read(@PathVariable int shiftId)
     {
@@ -57,12 +62,15 @@ public class ShiftController {
         return ResponseEntity.ok(shiftRecord);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("find-all")
     public ResponseEntity<List<Shift>> findAll()
     {
         return ResponseEntity.ok(shiftService.findAll());
     }
 
+
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("delete/{shiftId}")
     public ResponseEntity<Void> deleteById(@PathVariable int shiftId)
     {
@@ -70,10 +78,11 @@ public class ShiftController {
         return ResponseEntity.noContent().build();
     }
 
-    @DeleteMapping("delete")
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("delete")
     public ResponseEntity<Void> delete(@RequestBody Shift shift)
     {
-        shiftService.delete(shift);
+        shiftService.deleteById(shift.getShiftId());
         return ResponseEntity.noContent().build();
     }
 }

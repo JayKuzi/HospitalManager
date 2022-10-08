@@ -24,6 +24,7 @@ public class RoleController {
         this.roleService = roleService;
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("save")
     public ResponseEntity<Role> save(@RequestBody Role role){
         log.info("Save request: {}", role);
@@ -38,6 +39,7 @@ public class RoleController {
         return ResponseEntity.ok(save);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("delete/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id){
         log.info("Delete request: {}", id);
@@ -45,6 +47,7 @@ public class RoleController {
         return ResponseEntity.noContent().build();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("read/{id}")
     public ResponseEntity<Role> read(@PathVariable String id){
         log.info("Read request: {}", id);
@@ -52,6 +55,7 @@ public class RoleController {
         return ResponseEntity.ok(role);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("read-all")
     public ResponseEntity<List<Role>> readAll(){
         List<Role> roleList = this.roleService.findAll();
