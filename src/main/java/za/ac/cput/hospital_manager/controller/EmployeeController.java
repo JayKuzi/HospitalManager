@@ -28,6 +28,7 @@ public class EmployeeController {
     }
 
     @PostMapping("save")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Employee> save(@RequestBody Employee employee){
         log.info("Save request: {}", employee);
         Role validatedRole;
@@ -46,6 +47,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping("delete/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Void> delete(@PathVariable String id){
         log.info("Delete request: {}", id);
         this.employeeService.deleteById(id);
@@ -53,6 +55,7 @@ public class EmployeeController {
     }
 
     @GetMapping("read/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Employee> read (@PathVariable String id){
         log.info("Read request: {}", id);
         Employee employee = this.employeeService.read(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -60,6 +63,7 @@ public class EmployeeController {
     }
 
     @GetMapping("read-all")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<List<Employee>> readAll(){
         List<Employee> employeeList = this.employeeService.findAll();
         return ResponseEntity.ok(employeeList);

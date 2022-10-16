@@ -1,4 +1,4 @@
-/* Doctor.java
+/* Employee.java
 Entity for the Doctor
 Author: Jody Kearns (209023651)
 Date: 26 March 2022 */
