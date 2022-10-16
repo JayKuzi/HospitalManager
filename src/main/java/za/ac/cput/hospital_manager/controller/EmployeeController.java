@@ -37,7 +37,7 @@ public class EmployeeController {
             validatedRole = RoleFactory.build(employee.getRole().getRoleId(),
                     employee.getRole().getRoleName(), employee.getRole().getRoleDescription());
             validatedEmployee = EmployeeFactory.build(employee.getEmployeeId(), validatedRole, employee.getName(),
-                    employee.getSurname(), employee.getUsername(), employee.getPassword());
+                    employee.getSurname(), employee.getPassword());
         }catch(IllegalArgumentException e){
             log.info("Save request error: {}", e.getMessage());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
