@@ -1,4 +1,4 @@
-/* Doctor.java
+/* Employee.java
 Entity for the Doctor
 Author: Jody Kearns (209023651)
 Date: 26 March 2022 */
@@ -15,7 +15,7 @@ public class Employee implements Serializable {
 
     @Id
     private String employeeId;
-    private String name, surname, username, password;
+    private String name, surname, password;
 
     @ManyToOne
     private Role role;
@@ -29,7 +29,6 @@ public class Employee implements Serializable {
         this.role = builder.role;
         this.name = builder.name;
         this.surname = builder.surname;
-        this.username = builder.username;
         this.password = builder.password;
     }
 
@@ -49,9 +48,6 @@ public class Employee implements Serializable {
         return surname;
     }
 
-    public String getUsername() {
-        return username;
-    }
 
     public String getPassword() {
         return password;
@@ -64,7 +60,6 @@ public class Employee implements Serializable {
                 ", roleId=" + role +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
@@ -74,12 +69,12 @@ public class Employee implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return employeeId.equals(employee.employeeId) && role.equals(employee.role) && name.equals(employee.name) && surname.equals(employee.surname) && username.equals(employee.username) && password.equals(employee.password);
+        return employeeId.equals(employee.employeeId) && role.equals(employee.role) && name.equals(employee.name) && surname.equals(employee.surname) && password.equals(employee.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(employeeId, role, name, surname, username, password);
+        return Objects.hash(employeeId, role, name, surname, password);
     }
 
     public static class Builder {
@@ -103,11 +98,6 @@ public class Employee implements Serializable {
 
         public Builder surname(String surname){
             this.surname = surname;
-            return this;
-        }
-
-        public Builder username(String username){
-            this.username = username;
             return this;
         }
 
