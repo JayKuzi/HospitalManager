@@ -1,6 +1,7 @@
 # Files and folders to be ignored by Git.
 /target/
 /nbproject/
+/out/
 nbactions.xml
 .DS_Store
 .idea/
