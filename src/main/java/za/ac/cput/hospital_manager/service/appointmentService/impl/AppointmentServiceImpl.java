@@ -20,7 +20,7 @@ public class AppointmentServiceImpl implements IAppointmentService {
     }
 
     @Override
-    public Appointment create(Appointment appointment) {
+    public Appointment save(Appointment appointment) {
         return repository.save(appointment);
     }
 

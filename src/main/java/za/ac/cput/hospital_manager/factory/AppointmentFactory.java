@@ -5,7 +5,7 @@ import za.ac.cput.hospital_manager.helper.Helper;
 
 public class AppointmentFactory {
 
-    public static Appointment createAppointment(String appointmentId, String employeeId,
+    public static Appointment build(String appointmentId, String employeeId,
                                         String patientId, String appointmentType, String appointmentDate,String appointmentTime){
         Helper.checkStringParam("appointmentId", appointmentId);
         Helper.checkStringParam("employeeId", employeeId);

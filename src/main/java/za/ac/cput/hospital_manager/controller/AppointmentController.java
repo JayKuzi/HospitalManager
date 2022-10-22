@@ -33,7 +33,7 @@ public class AppointmentController {
         Appointment ValidateAppointment;
 
         try{ValidateAppointment = AppointmentFactory.build(appointment.getAppointmentId(), appointment.getEmployeeId(),
-                appointment.getPatientId(),appointment.getAppointmentType(),appointment.getAppointmentDate(),appointment.getAppointmentTime();
+                appointment.getPatientId(),appointment.getAppointmentType(),appointment.getAppointmentDate(),appointment.getAppointmentTime());
         }catch (IllegalArgumentException i)
         {
             log.info("Save: ", i.getMessage());
@@ -61,14 +61,6 @@ public class AppointmentController {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("read/{id}")
-    @CrossOrigin(origins = "http://localhost:4200")
-
-    public ResponseEntity<Appointment> read (@PathVariable String id){
-        log.info("Read request: {}", id);
-       Appointment appointment = this.appointmentService.read(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        return ResponseEntity.ok(appointment);
-    }
 
     @GetMapping("read-all")
     @CrossOrigin(origins = "http://localhost:4200")

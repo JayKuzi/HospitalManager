@@ -20,7 +20,7 @@ public class Employee implements Serializable {
     @ManyToOne
     private Role role;
 
-    @ManyToMany(cascade = { CascadeType.ALL })
+    @ManyToMany(cascade = { CascadeType.MERGE })
     @JoinTable(name = "Employee_Shift",
             joinColumns = { @JoinColumn(name = "employee_id") },
             inverseJoinColumns = { @JoinColumn(name = "shift_id") })
@@ -85,13 +85,13 @@ public class Employee implements Serializable {
         if (!(o instanceof Employee)) return false;
         Employee employee = (Employee) o;
 
-        return Objects.equals(getEmployeeId(), employee.getEmployeeId()) && Objects.equals(getName(), employee.getName()) && Objects.equals(getSurname(), employee.getSurname()) && Objects.equals(getUsername(), employee.getUsername()) && Objects.equals(getPassword(), employee.getPassword()) && Objects.equals(getRole(), employee.getRole()) && Objects.equals(shifts, employee.shifts);
+        return Objects.equals(getEmployeeId(), employee.getEmployeeId()) && Objects.equals(getName(), employee.getName()) && Objects.equals(getSurname(), employee.getSurname()) && Objects.equals(getPassword(), employee.getPassword()) && Objects.equals(getRole(), employee.getRole()) && Objects.equals(shifts, employee.shifts);
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(getEmployeeId(), getName(), getSurname(), getUsername(), getPassword(), getRole(), shifts);
+        return Objects.hash(getEmployeeId(), getName(), getSurname(), getPassword(), getRole(), shifts);
     }
 
     public static class Builder {
