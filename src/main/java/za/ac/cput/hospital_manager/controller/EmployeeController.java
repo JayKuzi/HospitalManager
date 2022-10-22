@@ -13,7 +13,6 @@ import za.ac.cput.hospital_manager.factory.RoleFactory;
 import za.ac.cput.hospital_manager.service.employeeService.IEmployeeService;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("hospital-manager/employee/")
@@ -29,6 +28,7 @@ public class EmployeeController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("save")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Employee> save(@RequestBody Employee employee){
         log.info("Save request: {}", employee);
         Role validatedRole;
@@ -37,7 +37,7 @@ public class EmployeeController {
             validatedRole = RoleFactory.build(employee.getRole().getRoleId(),
                     employee.getRole().getRoleName(), employee.getRole().getRoleDescription());
             validatedEmployee = EmployeeFactory.build(employee.getEmployeeId(), validatedRole, employee.getName(),
-                    employee.getSurname(), employee.getUsername(), employee.getPassword());
+                    employee.getSurname(), employee.getPassword());
         }catch(IllegalArgumentException e){
             log.info("Save request error: {}", e.getMessage());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
@@ -48,6 +48,7 @@ public class EmployeeController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("delete/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Void> delete(@PathVariable String id){
         log.info("Delete request: {}", id);
         this.employeeService.deleteById(id);
@@ -56,6 +57,7 @@ public class EmployeeController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("read/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Employee> read (@PathVariable String id){
         log.info("Read request: {}", id);
         Employee employee = this.employeeService.read(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -64,6 +66,7 @@ public class EmployeeController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("read-all")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<List<Employee>> readAll(){
         List<Employee> employeeList = this.employeeService.findAll();
         return ResponseEntity.ok(employeeList);

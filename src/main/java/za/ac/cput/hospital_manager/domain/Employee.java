@@ -1,4 +1,4 @@
-/* Doctor.java
+/* Employee.java
 Entity for the Doctor
 Author: Jody Kearns (209023651)
 Date: 26 March 2022 */
@@ -15,7 +15,7 @@ public class Employee implements Serializable {
 
     @Id
     private String employeeId;
-    private String name, surname, username, password;
+    private String name, surname, password;
 
     @ManyToOne
     private Role role;
@@ -36,7 +36,6 @@ public class Employee implements Serializable {
         this.shifts = builder.shifts;
         this.name = builder.name;
         this.surname = builder.surname;
-        this.username = builder.username;
         this.password = builder.password;
     }
 
@@ -56,9 +55,6 @@ public class Employee implements Serializable {
         return surname;
     }
 
-    public String getUsername() {
-        return username;
-    }
 
     public String getPassword() {
         return password;
@@ -76,7 +72,6 @@ public class Employee implements Serializable {
                 "employeeId='" + employeeId + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", role=" + role +
                 ", shift=" + shifts +
@@ -89,6 +84,7 @@ public class Employee implements Serializable {
         if (this == o) return true;
         if (!(o instanceof Employee)) return false;
         Employee employee = (Employee) o;
+
         return Objects.equals(getEmployeeId(), employee.getEmployeeId()) && Objects.equals(getName(), employee.getName()) && Objects.equals(getSurname(), employee.getSurname()) && Objects.equals(getUsername(), employee.getUsername()) && Objects.equals(getPassword(), employee.getPassword()) && Objects.equals(getRole(), employee.getRole()) && Objects.equals(shifts, employee.shifts);
     }
 
@@ -126,11 +122,6 @@ public class Employee implements Serializable {
 
         public Builder surname(String surname){
             this.surname = surname;
-            return this;
-        }
-
-        public Builder username(String username){
-            this.username = username;
             return this;
         }
 

@@ -9,7 +9,6 @@ import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.hospital_manager.domain.Role;
 import za.ac.cput.hospital_manager.factory.RoleFactory;
 import za.ac.cput.hospital_manager.service.roleService.IRoleService;
-
 import java.util.List;
 
 @RestController
@@ -26,6 +25,7 @@ public class RoleController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PostMapping("save")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Role> save(@RequestBody Role role){
         log.info("Save request: {}", role);
         Role validatedRole;
@@ -41,6 +41,7 @@ public class RoleController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("delete/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Void> delete(@PathVariable String id){
         log.info("Delete request: {}", id);
         this.roleService.deleteById(id);
@@ -49,6 +50,7 @@ public class RoleController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("read/{id}")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Role> read(@PathVariable String id){
         log.info("Read request: {}", id);
         Role role = this.roleService.read(id).orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -57,6 +59,7 @@ public class RoleController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("read-all")
+    @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<List<Role>> readAll(){
         List<Role> roleList = this.roleService.findAll();
         return ResponseEntity.ok(roleList);

@@ -1,5 +1,6 @@
 package za.ac.cput.hospital_manager.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -11,12 +12,12 @@ import java.util.Objects;
 public class Role implements Serializable {
 
     @Id
+    @Column(name="id")
     private String roleId;
     private String roleName, roleDescription;
 
     @OneToMany(mappedBy = "role")
     private List<Employee> employees;
-
 
 
     protected Role (){
