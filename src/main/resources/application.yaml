@@ -6,4 +6,4 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/hospital_manager?createDatabaseIfNotExist=true
     username: root
-    password: Elvisep@12345
+    password:
