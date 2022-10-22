@@ -17,7 +17,7 @@ import java.util.Objects;
 public class Ward implements Serializable
 {
     @Id
-    private int wardId;
+    private String wardId;
 
     private String wardName, wardDescription;
     private int wardSize;
@@ -32,7 +32,7 @@ public class Ward implements Serializable
         this.wardSize = builder.wardSize;
     }
 
-    public int getWardId() {
+    public String getWardId() {
         return wardId;
     }
 
@@ -76,11 +76,11 @@ public class Ward implements Serializable
 
     public static class Builder
     {
-        private int wardId, wardSize;
-        private String wardName, wardDescription;
+        private int wardSize;
+        private String wardId, wardName, wardDescription;
 
 
-        public Builder setWardId(int wardId) {
+        public Builder setWardId(String wardId) {
             this.wardId = wardId;
             return this;
         }

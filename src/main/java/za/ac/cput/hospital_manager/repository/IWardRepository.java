@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import za.ac.cput.hospital_manager.domain.Ward;
 
 @Repository
-public interface IWardRepository extends JpaRepository<Ward, Integer>
+public interface IWardRepository extends JpaRepository<Ward, String>
 {
 
 }

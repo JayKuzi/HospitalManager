@@ -37,7 +37,7 @@ public class WardServiceImpl implements IWardService
 
     // reading a ward
     @Override
-    public Optional<Ward> read(Integer id) {
+    public Optional<Ward> read(String id) {
         return this.repo.findById(id);
     }
 
@@ -56,7 +56,7 @@ public class WardServiceImpl implements IWardService
     }
 
     @Override
-    public void deleteById(int id)
+    public void deleteById(String id)
     {
         repo.deleteById(id);
     }

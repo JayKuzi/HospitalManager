@@ -11,7 +11,7 @@ import za.ac.cput.hospital_manager.domain.Ward;
 
 public class WardFactory
 {
-    public static Ward build(int wardId, String wardName, String wardDescription, int wardSize)
+    public static Ward build(String wardId, String wardName, String wardDescription, int wardSize)
     {
         Ward ward = new Ward.Builder()
                 .setWardId(wardId)

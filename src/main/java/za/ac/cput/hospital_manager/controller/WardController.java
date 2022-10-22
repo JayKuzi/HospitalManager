@@ -54,7 +54,7 @@ public class WardController
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("read/{id}")
-    public ResponseEntity<Ward> read(@PathVariable int id)
+    public ResponseEntity<Ward> read(@PathVariable String id)
     {
         log.info("Read: ", id);
         Ward ward = this.wardService.read(id)
@@ -73,7 +73,7 @@ public class WardController
 
     @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("delete/{id}")
-    public ResponseEntity<Void> delete (@PathVariable int id)
+    public ResponseEntity<Void> delete (@PathVariable String id)
     {
         log.info("Delete: ", id);
         this.wardService.deleteById(id);
