@@ -1,10 +1,10 @@
-package za.ac.cput.hospital_manager.service.patientService.impl.employeeService.impl;
+package za.ac.cput.hospital_manager.service.employeeService.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.ac.cput.hospital_manager.domain.Employee;
 import za.ac.cput.hospital_manager.repository.IEmployeeRepository;
-import za.ac.cput.hospital_manager.service.patientService.impl.employeeService.IEmployeeService;
+import za.ac.cput.hospital_manager.service.employeeService.IEmployeeService;
 import java.util.List;
 import java.util.Optional;
 

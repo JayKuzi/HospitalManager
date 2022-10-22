@@ -10,7 +10,7 @@ import za.ac.cput.hospital_manager.domain.Employee;
 import za.ac.cput.hospital_manager.domain.Role;
 import za.ac.cput.hospital_manager.factory.EmployeeFactory;
 import za.ac.cput.hospital_manager.factory.RoleFactory;
-import za.ac.cput.hospital_manager.service.patientService.impl.employeeService.IEmployeeService;
+import za.ac.cput.hospital_manager.service.employeeService.IEmployeeService;
 
 import java.util.List;
 
