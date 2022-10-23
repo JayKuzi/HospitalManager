@@ -8,7 +8,7 @@ import java.util.Objects;
 public class Medication implements Serializable {
     @Id
     private String medicationId;
-    private String medicationName, medicationPrescription, password;
+    private String medicationName, medicationDescription;
 
    protected Medication (){
 
@@ -17,8 +17,7 @@ public class Medication implements Serializable {
     private Medication (Builder builder){
         this.medicationId = builder.medicationId;
         this.medicationName = builder.medicationName;
-        this.medicationPrescription = builder.medicationPrescription;
-        this.password = builder.password;
+        this.medicationDescription = builder.medicationDescription;
     }
 
     public String getMedicationId() {
@@ -31,22 +30,17 @@ public class Medication implements Serializable {
         return medicationName;
     }
 
-    public String getMedicationPrescription() {
-        return medicationPrescription;
+    public String getMedicationDescription() {
+        return medicationDescription;
     }
 
-
-    public String getPassword() {
-        return password;
-    }
 
     @Override
     public String toString() {
         return "Medication{" +
                 "medicationId='" + medicationId + '\'' +
-                ", MedicationName='" + medicationName + '\'' +
-                ", MedicationPrescription='" + medicationPrescription + '\'' +
-                ", password='" + password + '\'' +
+                ", medicationName='" + medicationName + '\'' +
+                ", medicationDescription='" + medicationDescription + '\'' +
                 '}';
     }
 
@@ -55,16 +49,16 @@ public class Medication implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Medication medication = (Medication) o;
-        return medicationId.equals(medication.medicationId)  && medicationName.equals(medication.medicationName) && medicationPrescription.equals(medication.medicationPrescription) && password.equals(medication.password);
+        return medicationId.equals(medication.medicationId)  && medicationName.equals(medication.medicationName) && medicationDescription.equals(medication.medicationDescription);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(medicationId, medicationName, medicationPrescription, password);
+        return Objects.hash(medicationId, medicationName, medicationDescription);
     }
 
     public static class Builder {
-        private String medicationId, medicationName, medicationPrescription, password;
+        private String medicationId, medicationName, medicationDescription;
 
 
         public Builder medicationId(String medicationId){
@@ -79,17 +73,13 @@ public class Medication implements Serializable {
 
         }
 
-        public Builder medicationPrescription(String medicationPrescription){
-            this.medicationPrescription = medicationPrescription;
+        public Builder medicationDescription(String medicationDescription){
+            this.medicationDescription = medicationDescription;
             return this;
 
 
         }
 
-        public Builder password(String password){
-            this.password = password;
-            return this;
-        }
 
         public Medication build(){
             return new Medication(this);

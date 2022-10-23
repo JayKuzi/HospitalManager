@@ -30,7 +30,7 @@ public class PrescriptionController {
         try{
 
             validatedPrescription = PrescriptionFactory.build(prescription.getPrescriptionId(),prescription.getPatientId(),
-                    prescription.getMedicationId(), prescription.getPassword());
+                    prescription.getMedicationId());
         }catch(IllegalArgumentException e){
             log.info("Save request error: {}", e.getMessage());
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);

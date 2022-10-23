@@ -1,13 +1,15 @@
 package za.ac.cput.hospital_manager.domain;
 
+import javax.persistence.Entity;
 import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
 public class Prescription implements Serializable {
     @Id
     private String prescriptionId;
-    private String patientId, medicationId, password;
+    private String patientId, medicationId;
 
 
 
@@ -19,7 +21,6 @@ public class Prescription implements Serializable {
         this.prescriptionId = builder.prescriptionId;
         this.patientId = builder.patientId;
         this.medicationId = builder.medicationId;
-        this.password = builder.password;
     }
 
     public String getPrescriptionId() {
@@ -35,17 +36,12 @@ public class Prescription implements Serializable {
     }
 
 
-    public String getPassword() {
-        return password;
-    }
-
     @Override
     public String toString() {
         return "Prescription{" +
                 "prescriptionId='" + prescriptionId + '\'' +
                 ", patientId='" + patientId + '\'' +
                 ", medicationId='" + medicationId + '\'' +
-                ", password='" + password + '\'' +
                 '}';
     }
 
@@ -54,16 +50,16 @@ public class Prescription implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Prescription prescription= (Prescription) o;
-        return medicationId.equals(prescription.prescriptionId)  && patientId.equals(prescription.patientId) && medicationId.equals(prescription.medicationId) && password.equals(prescription.password);
+        return medicationId.equals(prescription.prescriptionId)  && patientId.equals(prescription.patientId) && medicationId.equals(prescription.medicationId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(prescriptionId, patientId, medicationId, password);
+        return Objects.hash(prescriptionId, patientId, medicationId);
     }
 
     public static class Builder {
-        private String prescriptionId, patientId, medicationId, password;
+        private String prescriptionId, patientId, medicationId;
 
 
         public Builder prescriptionId(String prescriptionId){
@@ -83,10 +79,6 @@ public class Prescription implements Serializable {
             return this;
         }
 
-        public Builder password(String password){
-            this.password = password;
-            return this;
-        }
 
         public Prescription build(){
             return new Prescription(this);
