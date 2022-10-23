@@ -1,40 +1,38 @@
 package za.ac.cput.hospital_manager.domain;
 
-import javax.persistence.Embeddable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Objects;
 
-//@Embeddable
+
 @Entity
 public class Address implements Serializable{
 
-    //@NotBlank(message = "AddressId is mandatory")
+
     @Id
     private String addressId;
 
-    //@NotBlank(message = "Patient id is mandatory")
-    //@Id
+
     private String patientId;
 
-    //@NotBlank(message = "House Number is mandatory")
+
     private String houseNumber;
 
-    //@NotBlank(message = "Street Name is mandatory")
+
     private String streetName;
 
-    //@NotBlank(message = "Suburb is mandatory")
+
     private String suburb;
 
-    //@NotBlank(message = "City Name is mandatory")
+
     private String city;
 
-    //@NotBlank(message = "Postal Code is mandatory")
+
     private String postalCode;
 
-    //@NotBlank(message = "Province Name is mandatory")
+
     private String province;
 
 
