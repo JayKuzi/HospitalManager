@@ -25,7 +25,8 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
     @Override public void delete(Employee employee){this.repository.delete(employee);}
 
-    @Override public List<Employee> findAll(){return this.repository.findAll();}
+    @Override public List<Employee> findAll()
+    {return this.repository.findAll();}
 
     @Override
     public void deleteById(String id){
