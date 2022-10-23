@@ -7,14 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import za.ac.cput.hospital_manager.domain.Prescription;
-import za.ac.cput.hospital_manager.domain.Role;
 import za.ac.cput.hospital_manager.factory.PrescriptionFactory;
-import za.ac.cput.hospital_manager.factory.RoleFactory;
-import za.ac.cput.hospital_manager.service.prescriptionService.impl.IPrescriptionService;
+import za.ac.cput.hospital_manager.service.prescriptionService.IPrescriptionService;
 
 import java.util.List;
 @RestController
-@RequestMapping("hospital-manager/prescriptionController/")
+@RequestMapping("hospital-manager/prescription/")
 @Slf4j
 public class PrescriptionController {
     private final IPrescriptionService prescriptionService;
@@ -28,12 +26,10 @@ public class PrescriptionController {
     @CrossOrigin(origins = "http://localhost:4200")
     public ResponseEntity<Prescription> save(@RequestBody Prescription prescription){
         log.info("Save request: {}", prescription);
-        Role validatedRole;
         Prescription validatedPrescription;
         try{
-            validatedRole = RoleFactory.build(prescription.getRole().getRoleId(),
-                    prescription.getRole().getRoleName(), prescription.getRole().getRoleDescription());
-            validatedPrescription = PrescriptionFactory.build(prescription.getPrescriptionId(), validatedRole,prescription.getPatientId(),
+
+            validatedPrescription = PrescriptionFactory.build(prescription.getPrescriptionId(),prescription.getPatientId(),
                     prescription.getMedicationId(), prescription.getPassword());
         }catch(IllegalArgumentException e){
             log.info("Save request error: {}", e.getMessage());

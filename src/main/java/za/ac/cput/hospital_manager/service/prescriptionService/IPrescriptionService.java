@@ -1,4 +1,4 @@
-package za.ac.cput.hospital_manager.service.prescriptionService.impl;
+package za.ac.cput.hospital_manager.service.prescriptionService;
 
 import za.ac.cput.hospital_manager.domain.Prescription;
 import za.ac.cput.hospital_manager.service.IService;

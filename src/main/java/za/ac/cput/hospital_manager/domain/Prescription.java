@@ -1,7 +1,6 @@
 package za.ac.cput.hospital_manager.domain;
 
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -10,8 +9,7 @@ public class Prescription implements Serializable {
     private String prescriptionId;
     private String patientId, medicationId, password;
 
-    @ManyToOne
-    private Role role;
+
 
     protected Prescription(){
 
@@ -19,7 +17,6 @@ public class Prescription implements Serializable {
 
     private Prescription (Builder builder){
         this.prescriptionId = builder.prescriptionId;
-        this.role = builder.role;
         this.patientId = builder.patientId;
         this.medicationId = builder.medicationId;
         this.password = builder.password;
@@ -27,10 +24,6 @@ public class Prescription implements Serializable {
 
     public String getPrescriptionId() {
         return prescriptionId;
-    }
-
-    public Role getRole() {
-        return role;
     }
 
     public String getPatientId() {
@@ -50,7 +43,6 @@ public class Prescription implements Serializable {
     public String toString() {
         return "Prescription{" +
                 "prescriptionId='" + prescriptionId + '\'' +
-                ", roleId=" + role +
                 ", patientId='" + patientId + '\'' +
                 ", medicationId='" + medicationId + '\'' +
                 ", password='" + password + '\'' +
@@ -62,27 +54,24 @@ public class Prescription implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Prescription prescription= (Prescription) o;
-        return medicationId.equals(prescription.prescriptionId) && role.equals(prescription.role) && patientId.equals(prescription.patientId) && medicationId.equals(prescription.medicationId) && password.equals(prescription.password);
+        return medicationId.equals(prescription.prescriptionId)  && patientId.equals(prescription.patientId) && medicationId.equals(prescription.medicationId) && password.equals(prescription.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(prescriptionId, role, patientId, medicationId, password);
+        return Objects.hash(prescriptionId, patientId, medicationId, password);
     }
 
     public static class Builder {
-        private String prescriptionId, patientId, surname, medicationId, password;
-        private Role role;
+        private String prescriptionId, patientId, medicationId, password;
+
 
         public Builder prescriptionId(String prescriptionId){
             this.prescriptionId = prescriptionId;
             return this;
         }
 
-        public Builder role(Role role){
-            this.role = role;
-            return this;
-        }
+
 
         public Builder patientId(String patientId){
             this.patientId = patientId;
